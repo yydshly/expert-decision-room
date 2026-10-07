@@ -116,4 +116,4 @@ GitHub 工作流仅手动触发，首次提交不会自动运行。本次公开�
 
 ## Context receipts · 2026-10-07
 
-New replies expose a collapsible list of the messages actually supplied to the model, distinguishing user statements from earlier model opinions. This records input scope, not sentence-by-sentence fact verification. Old replies cannot be reconstructed retrospectively; missing records remain unavailable. New prompting constraints have not had a live-model quality comparison. Source50b97188825b3f85a022130ceac38b280ae092df; synthetic browser verification is pending.
+New replies expose a collapsible list of the messages actually supplied to the model, distinguishing user statements from earlier model opinions. This records input scope, not sentence-by-sentence fact verification. Old replies cannot be reconstructed retrospectively; missing records remain unavailable. New prompting constraints have not had a live-model quality comparison. Source50b97188825b3f85a022130ceac38b280ae092df; 18 synthetic browser checks passed in run37645278641, including desktop and390px context receipts. All inputs are fictional; this does not establish new live-model quality. Evidence: docs/qa/context-receipt/.

@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "run_url": "https://github.com/yydshly/expert-decision-room/actions/runs/37645278641",
+  "tested_public_commit": "92bd215f06e60f44cab6fbd89416aeba14da7d81",
+  "site_source_commit": "50b97188825b3f85a022130ceac38b280ae092df",
+  "site_url": "https://expert-decision-room.yydshly.chatgpt.site",
+  "site_access": "owner-private",
+  "artifact_id": 11494886043,
+  "zip_sha256": "5b21a82c7946847a5aabd3048f8b33fc0f0a72dac977763ae1e3b36253e76779",
+  "matching_source_files_sha256": {
+    "app/api/chat-run/route.ts": "89524cd821bb6dede8359863f6da1f3a979aceb2088a62067d77a6700ef9cb3c",
+    "app/page.tsx": "efe3e53c8eef73388a8191a5460849d6dc6a49115ad4e093aca7ceae65d68598",
+    "app/globals.css": "055f3bc26f4fd7e549327ba380ef9d9fb834e80dfc841f66259a2ab1f368a028",
+    "components/discussion-context.tsx": "558a91b8d70887de6543f4a7d91d8b4eebca4a0404335703537f3f5f4a2d5c91",
+    "lib/discussion-provenance.mts": "178be20c88596ff8c14167b5e9e5ec5ca177406f605d1777cf6efc3c6a8917be",
+    "tests/discussion-provenance.test.mjs": "3b918d2d77ca14ac019ed03fea05d5b2f065be9076a35eaf462c363f1529bf72",
+    "tests/browser/chat-ui.mjs": "dfb9f2bc2f0ab7d72c1e7352d1c16048b2819e5a5527dda459e617bcfe00e640"
+  },
+  "scope": "Synthetic local browser fixture, 30 public unit tests and type checking. Private Site source has 36 tests including non-exported TTS tests. No production model requests or private user messages. 18 mocked UI checks passed. No external browser requests or page errors.",
+  "visual_review": "Inspected desktop and mobile expanded receipt pixels: user reports and prior AI opinions distinguishable, readable links, no raw IDs/JSON, no horizontal clipping. Technical details remain collapsed.",
+  "limits": "Receipt records actual input message IDs, not per-claim citations or factual verification. Prompt quality not reassessed with live MiniMax. Legacy replies have no inferred receipt; missing records are explicitly unavailable.",
+  "screenshots": {
+    "chat-desktop.png": "627d45cb382184072597a819b9fe04af46465b0c37bbcb76161cade7f6ea9be4",
+    "chat-mobile.png": "de089d4ba2f6a29cc5d49335ea7e07cd2f4adef52f9fc3c9744cec3e6c21103a",
+    "readable-citations-after.png": "c4167a58db34476ea9d666a418cd2a3ed0f655f6cc9c371edc982df952459719",
+    "citation-bug-synthetic-before.png": "49e4f4f33b970b103dfe9918a181c3cb5fe73fa6d04f1a8e0422d14843092f9c",
+    "context-receipt-desktop.png": "6a23f7159cc63f24b8cde898663bf649505cfe54ec89223380402b69392a3228",
+    "context-receipt-mobile.png": "8ec027da83467b458089e989df2222e19f8eb3298604cc473f9994d70f9bf657"
+  }
+}

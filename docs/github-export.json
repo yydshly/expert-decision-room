@@ -17,17 +17,29 @@
     "githubCI": "37574007605 success"
   },
   "files": {
-    "components/discussion-context.tsx": {
-      "sha256": "558a91b8d70887de6543f4a7d91d8b4eebca4a0404335703537f3f5f4a2d5c91",
-      "bytes": 1428
+    "docs/qa/context-receipt/chat-desktop.png": {
+      "sha256": "627d45cb382184072597a819b9fe04af46465b0c37bbcb76161cade7f6ea9be4",
+      "bytes": 191871
     },
-    "lib/discussion-provenance.mts": {
-      "sha256": "178be20c88596ff8c14167b5e9e5ec5ca177406f605d1777cf6efc3c6a8917be",
-      "bytes": 1984
+    "docs/qa/context-receipt/chat-mobile.png": {
+      "sha256": "de089d4ba2f6a29cc5d49335ea7e07cd2f4adef52f9fc3c9744cec3e6c21103a",
+      "bytes": 88548
     },
-    "tests/discussion-provenance.test.mjs": {
-      "sha256": "3b918d2d77ca14ac019ed03fea05d5b2f065be9076a35eaf462c363f1529bf72",
-      "bytes": 1821
+    "docs/qa/context-receipt/context-receipt-desktop.png": {
+      "sha256": "6a23f7159cc63f24b8cde898663bf649505cfe54ec89223380402b69392a3228",
+      "bytes": 207039
+    },
+    "docs/qa/context-receipt/context-receipt-mobile.png": {
+      "sha256": "8ec027da83467b458089e989df2222e19f8eb3298604cc473f9994d70f9bf657",
+      "bytes": 100758
+    },
+    "docs/qa/context-receipt/summary.json": {
+      "sha256": "17c094cd0b51b631c8d5d04c7c5ce344b89e1460b667795a06276e6a59e649f7",
+      "bytes": 2338
+    },
+    "docs/qa/context-receipt/verification.json": {
+      "sha256": "af189aef921f8d6d94a59c0a737b2807b16f13f3ca9627bbcdd62bdd5ae2d9a5",
+      "bytes": 2581
     },
     ".github/workflows/ci.yml": {
       "sha256": "b2510bf4663e38ef6cb863a129236a2a86a58d9ed6bee5b92bfd84c76d9bf1ef",
@@ -42,8 +54,8 @@
       "bytes": 45
     },
     "README.md": {
-      "sha256": "f8dcc103f64c375b193933790c0a0a2eccfa227955cb03c81987fcd2e40f3ef7",
-      "bytes": 15669
+      "sha256": "2a34a4537ecbe428615fc597e570b56580ace1dac94856b7e0565714f33c6ea7",
+      "bytes": 15835
     },
     "app/api/chat-run/route.ts": {
       "sha256": "89524cd821bb6dede8359863f6da1f3a979aceb2088a62067d77a6700ef9cb3c",
@@ -128,6 +140,10 @@
     "components/connector-error.tsx": {
       "sha256": "2d0d04559952ce9c9a327cca499f4b99f35d885cccfce375230e116695d3f155",
       "bytes": 1082
+    },
+    "components/discussion-context.tsx": {
+      "sha256": "558a91b8d70887de6543f4a7d91d8b4eebca4a0404335703537f3f5f4a2d5c91",
+      "bytes": 1428
     },
     "components/experiment-panel.tsx": {
       "sha256": "76dc8f59fb58a0fe9070a3ead75217ffba02b667d960f52860cb94751bdddeb1",
@@ -509,6 +525,10 @@
       "sha256": "1c93d747e384c8e17e3e3dd5361b24412babf5eba2a11d2ae7a75f4e0924112c",
       "bytes": 416
     },
+    "lib/discussion-provenance.mts": {
+      "sha256": "178be20c88596ff8c14167b5e9e5ec5ca177406f605d1777cf6efc3c6a8917be",
+      "bytes": 1984
+    },
     "lib/durable-execution.mts": {
       "sha256": "e7484787b94ecbde76bd487f885344827df20eda1d394ae91f1fdd1f996b4425",
       "bytes": 5191
@@ -649,6 +669,10 @@
       "sha256": "dfb9f2bc2f0ab7d72c1e7352d1c16048b2819e5a5527dda459e617bcfe00e640",
       "bytes": 13135
     },
+    "tests/discussion-provenance.test.mjs": {
+      "sha256": "3b918d2d77ca14ac019ed03fea05d5b2f065be9076a35eaf462c363f1529bf72",
+      "bytes": 1821
+    },
     "tests/durable-execution.test.mjs": {
       "sha256": "cb373e1518b32750a1c188c62ea661e83fba05a4b17f54e78fa80eed0271501c",
       "bytes": 5340
@@ -680,5 +704,5 @@
   },
   "uiSourceCommit": "1ede70d5a3ae60548303eb8a4b975fba7ac349ed",
   "latestSourceCommit": "50b97188825b3f85a022130ceac38b280ae092df",
-  "contextReceiptVerification": "36 source tests/typecheck passed; new synthetic browser coverage pending"
+  "contextReceiptVerification": "30 public-source tests and18 synthetic browser checks passed; run37645278641; no new live-model quality comparison"
 }
