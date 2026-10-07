@@ -1,0 +1,7 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readableMessage,referenceLabel} from '../lib/message-presentation.mts';
+const id='11111111-1111-4111-8111-111111111111';const missing='22222222-2222-4222-8222-222222222222';const records=[{id,role:'本人',title:'虚构的纸飞机问题',body:'纸飞机能飞多远？'}];
+test('known message reference becomes a readable link without losing claim',()=>{const x=readableMessage(`**给定事实（引用消息ID）**\n- ${id}：飞行距离未知。`,records);assert.ok(x.text.includes('[你：虚构的纸飞机问题](#message-'+id+')'));assert.ok(x.text.includes('飞行距离未知'));assert.ok(x.text.includes('讨论依据'));});
+test('unknown citation is marked unavailable, never invented',()=>{const x=readableMessage(`- ${missing}：尚未核实的说法。`,records);assert.equal(x.missingReferences.length,1);assert.ok(x.text.includes('引用消息暂不可用'));assert.ok(x.text.includes('尚未核实的说法'));});
+test('ordinary identifiers and code are not blindly stripped',()=>{const text=`数据库主键是 ${missing}，请保留。\n\`${id}\`\n\`\`\`json\n{"id":"${id}"}\n\`\`\``;assert.equal(readableMessage(text,records).text,text);});
+test('plain model context uses labels without URL fragments',()=>{const x=readableMessage(`${id}：给定说法`,records,false);assert.ok(!x.text.includes(id));assert.ok(x.text.includes('给定说法'));});
+test('expert labels never reproduce legacy technical headings or IDs',()=>{assert.equal(referenceLabel({id,role:'研究员',body:`**事实**\n- ${missing}:内容`}), '研究员的发言');});
