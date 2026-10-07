@@ -104,6 +104,6 @@ GitHub导出不包含 .openai/hosting.json、.git、.env、node_modules、.wrang
 
 ## GitHub 源码归档
 
-本私密仓库归档来源版本 `0307d17ecd50b46dcc9527e7b2bd0649d636b428`。试用入口：https://expert-decision-room.yydshly.chatgpt.site/ （需本人登录）。不包含生产身份配置、密钥、数据库或用户聊天。评测题目与浏览器 fixture 均为合成数据。
+本源码仓库已按作者授权公开，归档来源版本 `0307d17ecd50b46dcc9527e7b2bd0649d636b428`。试用入口：https://expert-decision-room.yydshly.chatgpt.site/ （需本人登录）。不包含生产身份配置、密钥、数据库或用户聊天。评测题目与浏览器 fixture 均为合成数据。
 
-GitHub 工作流仅手动触发，首次提交不会自动运行。私密仓库运行额度与费用尚未核实；运行前需检查账户额度。浏览器测试使用模拟 API，不代表真实 MiniMax 全流程已通过。当前本地浏览器受环境限制，真实 UI 截图回归仍待完成。
+GitHub 工作流仅手动触发，首次提交不会自动运行。本次公开源码未启用自动运行；任何新增运行应先确认适用的额度与范围。浏览器测试使用模拟 API，不代表真实 MiniMax 全流程已通过。当前本地浏览器受环境限制，真实 UI 截图回归仍待完成。

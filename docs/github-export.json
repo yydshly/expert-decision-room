@@ -3,7 +3,8 @@
   "archiveSha256": "db5fa1daf2854a5eda8e9df01d0bb3c582a53a02afe7a45d129765aee941f470",
   "changes": [
     "CI manual dispatch only; no paid or automatic runs",
-    "README archive and verification disclosure"
+    "README archive and verification disclosure",
+    "Source repository made public by explicit owner instruction; backend access unchanged"
   ],
   "verification": {
     "npmCi": "passed with workspace-local cache",
@@ -29,8 +30,8 @@
       "bytes": 45
     },
     "README.md": {
-      "sha256": "5be96e98641fb7ff1fa6338604014142353c36ec8555958ac85cb882a5c7a5aa",
-      "bytes": 14424
+      "sha256": "819daf6580a94caebf002d1388b3fbe22a64ea125772525665ac2b7f786d232b",
+      "bytes": 14469
     },
     "app/api/chat-run/route.ts": {
       "sha256": "3acf2559a3036095f72e64fcea151ac8c76323806edc3f334f40fd7a058796c3",
