@@ -1,4 +1,4 @@
-name: Verify private group chat
+name: Verify group chat with synthetic data
 on: [workflow_dispatch]
 permissions:
   contents: read
@@ -21,9 +21,10 @@ jobs:
         run: |
           npm run dev -- --host 127.0.0.1 --port 4784 > /tmp/preview.log 2>&1 &
           for n in $(seq 1 90); do curl -sf http://127.0.0.1:4784/ >/dev/null && break; sleep 1; done
-          npm run test:browser
+          npm run test:browser || { cat /tmp/preview.log; exit 1; }
       - uses: actions/upload-artifact@v4
         if: always()
         with:
           name: simulated-chat-ui
           path: test-results/
+          retention-days: 1
