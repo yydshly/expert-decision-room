@@ -93,7 +93,7 @@ D1 准备：execution_grants / execution_calls 为新增表，不修改原聊天
 
 发送会将当前问题、有限近期聊天、已采用角色资料传给国内 MiniMax。勿提交不愿交给该服务的私人资料；没有外部搜索或资料核验。输入受每调用8,000字节、2048输出token、90秒限制；旧上下文会按预算缩减，当前问题完整保留，超长则报错。角色配置版本、模型响应ID、真实usage和耗时随发言保存。
 
-私有 `/trial` 页面展示真实试跑、失败与局限；`docs/evaluations/` 为可检查的非敏感合成评测记录。测试：`npm test`，`npx tsc --noEmit`。`npm run test:browser` 需要 Chromium 和本地4784端口预览，仅使用模拟API，不读取密钥、不调用模型。当前执行环境阻止Chromium创建socket，浏览器交互需由GitHub CI补验，不应声称本地浏览器已通过。
+私有 `/trial` 页面展示真实试跑、失败与局限；`docs/evaluations/` 为可检查的非敏感合成评测记录。测试：`npm test`，`npx tsc --noEmit`。`npm run test:browser` 需要 Chromium 和本地4784端口预览，仅使用模拟API，不读取密钥、不调用模型。云端本地浏览器受socket限制；已由公开仓库标准runner完成受控模拟UI验证，见下方记录。
 
 GitHub导出不包含 .openai/hosting.json、.git、.env、node_modules、.wrangler、数据库、用户会话或任何API密钥。使用现有私有Site作为实际服务，不要通过GitHub Pages部署含服务端功能的项目。Node24；`npm ci`；`npm run dev`；本地无MiniMax机密时只有模拟测试可运行。生产必须使用支持Cloudflare Worker/D1和平台身份的受保护环境，不能自行信任客户端传入的用户身份头。
 
@@ -106,4 +106,10 @@ GitHub导出不包含 .openai/hosting.json、.git、.env、node_modules、.wrang
 
 本源码仓库已按作者授权公开，归档来源版本 `0307d17ecd50b46dcc9527e7b2bd0649d636b428`。试用入口：https://expert-decision-room.yydshly.chatgpt.site/ （需本人登录）。不包含生产身份配置、密钥、数据库或用户聊天。评测题目与浏览器 fixture 均为合成数据。
 
-GitHub 工作流仅手动触发，首次提交不会自动运行。本次公开源码未启用自动运行；任何新增运行应先确认适用的额度与范围。浏览器测试使用模拟 API，不代表真实 MiniMax 全流程已通过。当前本地浏览器受环境限制，真实 UI 截图回归仍待完成。
+GitHub 工作流仅手动触发，首次提交不会自动运行。本次公开源码未启用自动运行；任何新增运行应先确认适用的额度与范围。浏览器测试使用模拟 API，不代表真实 MiniMax 全流程已通过。真实 Chromium 桌面与390px截图回归已完成，全部使用虚构消息。
+
+## 2026-10-07 浏览器回归
+
+[验收记录与截图](docs/ui-verification-2026-10-07/verification.json)，[实际运行](https://github.com/yydshly/expert-decision-room/actions/runs/37574007605)。27项逻辑测试、类型检查和14项模拟UI检查通过；覆盖引用可读化、停止/插话/错误恢复、底部跟随与读旧消息保护、390px布局。0模型调用、0外部浏览器请求、0pageErrors。
+
+`citation-bug-synthetic-before.png` 是虚构消息的旧渲染模拟，不是私人生产截图。测试提交`bdd2a28fb63b42ab8af1f683b53a929042b1a345`；对应业务UI来源`1ede70d5a3ae60548303eb8a4b975fba7ac349ed`。这不等于新验证了真实MiniMax模型调用链。

@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Known references resolve; missing references remain explicit; markdown renders; debug details collapsed",
+      "status": "passed"
+    },
+    {
+      "name": "Scenario buttons fill drafts without triggering execution",
+      "status": "passed"
+    },
+    {
+      "name": "User send executes once and renders natural paragraphs/list",
+      "status": "passed"
+    },
+    {
+      "name": "Stop during pending execution keeps completed messages and does not start another request",
+      "status": "passed"
+    },
+    {
+      "name": "New message interrupts prior request; stale transport output cannot replace current status",
+      "status": "passed"
+    },
+    {
+      "name": "Provider error stays visible and saved question remains",
+      "status": "passed"
+    },
+    {
+      "name": "Incomplete stream is reported instead of silently marked complete",
+      "status": "passed"
+    },
+    {
+      "name": "A new user request can recover after an error",
+      "status": "passed"
+    },
+    {
+      "name": "Latest reply stays in view while following the conversation",
+      "status": "passed"
+    },
+    {
+      "name": "Reading earlier messages is not interrupted by an incoming message",
+      "status": "passed"
+    },
+    {
+      "name": "Return-to-latest restores following",
+      "status": "passed"
+    },
+    {
+      "name": "Viewport resize preserves the latest message position",
+      "status": "passed"
+    },
+    {
+      "name": "390px mobile layout has no document horizontal overflow",
+      "status": "passed"
+    },
+    {
+      "name": "No browser runtime errors and no external requests",
+      "status": "passed"
+    }
+  ],
+  "calls": 7,
+  "stops": 2,
+  "modelCalls": 0,
+  "fixture": "synthetic paper-plane messages only",
+  "pageErrors": [],
+  "externalRequests": []
+}

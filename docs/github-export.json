@@ -13,13 +13,13 @@
       "failed": 0
     },
     "typecheck": "passed",
-    "browser": "not run; local environment limitation",
-    "githubCI": "not run; private quota unverified"
+    "browser": "14 synthetic UI checks passed in Chromium, desktop and390px; no model calls",
+    "githubCI": "37574007605 success"
   },
   "files": {
     ".github/workflows/ci.yml": {
-      "sha256": "090d34246a52f9065110df0e6f911bf983c449da2a38ff2ee1a99ea2dada70e5",
-      "bytes": 950
+      "sha256": "b2510bf4663e38ef6cb863a129236a2a86a58d9ed6bee5b92bfd84c76d9bf1ef",
+      "bytes": 1027
     },
     ".gitignore": {
       "sha256": "f1c42f523ca57b6be0303a460daacfed48fb2a598f9e2a92bd2982ec47d8dac1",
@@ -30,8 +30,8 @@
       "bytes": 45
     },
     "README.md": {
-      "sha256": "819daf6580a94caebf002d1388b3fbe22a64ea125772525665ac2b7f786d232b",
-      "bytes": 14469
+      "sha256": "60dac4276212caf1b2a6caf7cbf9000ef8fa68a477b1d7686bd3fbb16f245c9a",
+      "bytes": 15165
     },
     "app/api/chat-run/route.ts": {
       "sha256": "3acf2559a3036095f72e64fcea151ac8c76323806edc3f334f40fd7a058796c3",
@@ -66,8 +66,8 @@
       "bytes": 2550
     },
     "app/globals.css": {
-      "sha256": "3894f1728f9d774a220418ab0bb40ffd324cf63c5f29c78332ab6e104131be68",
-      "bytes": 24127
+      "sha256": "b567aeb91fca6fa76715d49d00a6e424075ca4a11f6bf632dd0ca62617adb439",
+      "bytes": 24256
     },
     "app/layout.tsx": {
       "sha256": "9a0eee76333c747e36461a3319047a0441a9a69d378dba2ba6b9939fe7bc2997",
@@ -78,8 +78,8 @@
       "bytes": 1978
     },
     "app/page.tsx": {
-      "sha256": "9266a4045a140184a3b1b1c6ce3b1920a4ed4e1a1101403477cd4f6203c2b826",
-      "bytes": 19994
+      "sha256": "bbbf98bd882d5c04cf1cc82bf8a936043ba8d5623330168b03b065da5a00280e",
+      "bytes": 20900
     },
     "app/trial/page.tsx": {
       "sha256": "2cef30174e0e25abcf8c9de2f87f745973f207f430bee3138286aa4e2af30e84",
@@ -393,6 +393,30 @@
       "sha256": "2b3a7f580ef48e72b6a7b31b05848914a22e3305881405dc535c4a70c18c54b8",
       "bytes": 5915
     },
+    "docs/ui-verification-2026-10-07/chat-desktop.png": {
+      "sha256": "fffa8bb14ccfba621a07523a710da7ef456ba2831584a4e7a7d0a583b82b1afd",
+      "bytes": 188794
+    },
+    "docs/ui-verification-2026-10-07/chat-mobile.png": {
+      "sha256": "f0fd5455744669c998f78c647890c3de3e4592c75ab3a58704826f9cd9767688",
+      "bytes": 85036
+    },
+    "docs/ui-verification-2026-10-07/citation-bug-synthetic-before.png": {
+      "sha256": "42fcb36a25efb1d45f7fdc0f3f8bee13a0b7e1ee0f67451a06972d5dc8c8ed52",
+      "bytes": 200621
+    },
+    "docs/ui-verification-2026-10-07/readable-citations-after.png": {
+      "sha256": "18597ba681905ef0350f722c6a32fe9a965fab2eeafcb9e0f357b89eff07cded",
+      "bytes": 194906
+    },
+    "docs/ui-verification-2026-10-07/summary.json": {
+      "sha256": "2bf05b8e6ce152408f987e54397a05815832e4aeaea5ca4c6dff3df8e5d40df8",
+      "bytes": 1852
+    },
+    "docs/ui-verification-2026-10-07/verification.json": {
+      "sha256": "e48a700f2948488bc65f5f4f90243747d6ff6917fbdfb1bda45e813089f1f646",
+      "bytes": 1568
+    },
     "drizzle.config.ts": {
       "sha256": "af081f7384aaeb0082cf422e29f139d137ca2f6a57c69b2c37b9fb1f8479867b",
       "bytes": 148
@@ -534,7 +558,7 @@
       "bytes": 561708
     },
     "package.json": {
-      "sha256": "fc968d37c238390b7f0542aa9049fce08b9f30ad4a87255014c5db5cd5925e72",
+      "sha256": "135e0570bc833b000dfcd87f67c44e3f9bbe499df6d02bc5fa2b3a92b798c5be",
       "bytes": 2314
     },
     "postcss.config.mjs": {
@@ -609,9 +633,9 @@
       "sha256": "df86ebfc27d2f00860036658e933ac0ddd7b5f6879aa5d51218f0863c7e1fb60",
       "bytes": 1530
     },
-    "tests/browser/chat-ui.cjs": {
-      "sha256": "5f077b173b3a28040e7ef6b4da1dd5e72c938ae40a042d14a7da49824e7d9b60",
-      "bytes": 4397
+    "tests/browser/chat-ui.mjs": {
+      "sha256": "da0e166cf70d99416b77328ad061ad224b8013ccce4f13b94055cc7b9beaae99",
+      "bytes": 10858
     },
     "tests/durable-execution.test.mjs": {
       "sha256": "cb373e1518b32750a1c188c62ea661e83fba05a4b17f54e78fa80eed0271501c",
@@ -641,5 +665,6 @@
       "sha256": "6f6d890794fbe23f3e35cceb327f49d5977432a5aaf715e040a6408932da395b",
       "bytes": 3115
     }
-  }
+  },
+  "uiSourceCommit": "1ede70d5a3ae60548303eb8a4b975fba7ac349ed"
 }

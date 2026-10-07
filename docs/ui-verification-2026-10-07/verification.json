@@ -1,0 +1,26 @@
+{
+  "run": "https://github.com/yydshly/expert-decision-room/actions/runs/37574007605",
+  "githubCommit": "bdd2a28fb63b42ab8af1f683b53a929042b1a345",
+  "siteSourceCommit": "1ede70d5a3ae60548303eb8a4b975fba7ac349ed",
+  "uiFilesMatch": {
+    "app/page.tsx": true,
+    "app/globals.css": true,
+    "components/message-body.tsx": true,
+    "lib/message-presentation.mts": true,
+    "tests/browser/chat-ui.mjs": true
+  },
+  "conclusion": "success",
+  "checks": 14,
+  "artifactSha256": "85f280baaf693aef52aa012d90565db97820b881ce0bc6207e98e43a9588c9db",
+  "modelCalls": 0,
+  "externalBrowserRequests": 0,
+  "fixture": "Synthetic paper-plane messages only; no personal chat or credentials",
+  "visualReview": "Readable known citation link, explicit unavailable-reference warning and collapsed technical metadata verified. Desktop and 390px mobile screenshots now show the latest message. Auto-follow, reading-old-message protection and return-to-latest all pass regression.",
+  "limitation": "Mocked UI validation is not a new test of the production MiniMax provider or private user data. Before image is explicitly a simulated old rendering of synthetic text.",
+  "files": {
+    "chat-desktop.png": "fffa8bb14ccfba621a07523a710da7ef456ba2831584a4e7a7d0a583b82b1afd",
+    "chat-mobile.png": "f0fd5455744669c998f78c647890c3de3e4592c75ab3a58704826f9cd9767688",
+    "readable-citations-after.png": "18597ba681905ef0350f722c6a32fe9a965fab2eeafcb9e0f357b89eff07cded",
+    "citation-bug-synthetic-before.png": "42fcb36a25efb1d45f7fdc0f3f8bee13a0b7e1ee0f67451a06972d5dc8c8ed52"
+  }
+}
