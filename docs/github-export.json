@@ -17,6 +17,18 @@
     "githubCI": "37574007605 success"
   },
   "files": {
+    "components/discussion-context.tsx": {
+      "sha256": "558a91b8d70887de6543f4a7d91d8b4eebca4a0404335703537f3f5f4a2d5c91",
+      "bytes": 1428
+    },
+    "lib/discussion-provenance.mts": {
+      "sha256": "178be20c88596ff8c14167b5e9e5ec5ca177406f605d1777cf6efc3c6a8917be",
+      "bytes": 1984
+    },
+    "tests/discussion-provenance.test.mjs": {
+      "sha256": "3b918d2d77ca14ac019ed03fea05d5b2f065be9076a35eaf462c363f1529bf72",
+      "bytes": 1821
+    },
     ".github/workflows/ci.yml": {
       "sha256": "b2510bf4663e38ef6cb863a129236a2a86a58d9ed6bee5b92bfd84c76d9bf1ef",
       "bytes": 1027
@@ -30,12 +42,12 @@
       "bytes": 45
     },
     "README.md": {
-      "sha256": "60dac4276212caf1b2a6caf7cbf9000ef8fa68a477b1d7686bd3fbb16f245c9a",
-      "bytes": 15165
+      "sha256": "f8dcc103f64c375b193933790c0a0a2eccfa227955cb03c81987fcd2e40f3ef7",
+      "bytes": 15669
     },
     "app/api/chat-run/route.ts": {
-      "sha256": "3acf2559a3036095f72e64fcea151ac8c76323806edc3f334f40fd7a058796c3",
-      "bytes": 8152
+      "sha256": "89524cd821bb6dede8359863f6da1f3a979aceb2088a62067d77a6700ef9cb3c",
+      "bytes": 8496
     },
     "app/api/chat/route.ts": {
       "sha256": "36fc8256aa033f7ddef7a033d47b69a48021b62428b0e03a965636d7ca4b4d1b",
@@ -66,8 +78,8 @@
       "bytes": 2550
     },
     "app/globals.css": {
-      "sha256": "b567aeb91fca6fa76715d49d00a6e424075ca4a11f6bf632dd0ca62617adb439",
-      "bytes": 24256
+      "sha256": "055f3bc26f4fd7e549327ba380ef9d9fb834e80dfc841f66259a2ab1f368a028",
+      "bytes": 24802
     },
     "app/layout.tsx": {
       "sha256": "9a0eee76333c747e36461a3319047a0441a9a69d378dba2ba6b9939fe7bc2997",
@@ -78,8 +90,8 @@
       "bytes": 1978
     },
     "app/page.tsx": {
-      "sha256": "bbbf98bd882d5c04cf1cc82bf8a936043ba8d5623330168b03b065da5a00280e",
-      "bytes": 20900
+      "sha256": "efe3e53c8eef73388a8191a5460849d6dc6a49115ad4e093aca7ceae65d68598",
+      "bytes": 20850
     },
     "app/trial/page.tsx": {
       "sha256": "2cef30174e0e25abcf8c9de2f87f745973f207f430bee3138286aa4e2af30e84",
@@ -634,8 +646,8 @@
       "bytes": 1530
     },
     "tests/browser/chat-ui.mjs": {
-      "sha256": "da0e166cf70d99416b77328ad061ad224b8013ccce4f13b94055cc7b9beaae99",
-      "bytes": 10858
+      "sha256": "dfb9f2bc2f0ab7d72c1e7352d1c16048b2819e5a5527dda459e617bcfe00e640",
+      "bytes": 13135
     },
     "tests/durable-execution.test.mjs": {
       "sha256": "cb373e1518b32750a1c188c62ea661e83fba05a4b17f54e78fa80eed0271501c",
@@ -666,5 +678,7 @@
       "bytes": 3115
     }
   },
-  "uiSourceCommit": "1ede70d5a3ae60548303eb8a4b975fba7ac349ed"
+  "uiSourceCommit": "1ede70d5a3ae60548303eb8a4b975fba7ac349ed",
+  "latestSourceCommit": "50b97188825b3f85a022130ceac38b280ae092df",
+  "contextReceiptVerification": "36 source tests/typecheck passed; new synthetic browser coverage pending"
 }

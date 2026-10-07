@@ -113,3 +113,7 @@ GitHub 工作流仅手动触发，首次提交不会自动运行。本次公开�
 [验收记录与截图](docs/ui-verification-2026-10-07/verification.json)，[实际运行](https://github.com/yydshly/expert-decision-room/actions/runs/37574007605)。27项逻辑测试、类型检查和14项模拟UI检查通过；覆盖引用可读化、停止/插话/错误恢复、底部跟随与读旧消息保护、390px布局。0模型调用、0外部浏览器请求、0pageErrors。
 
 `citation-bug-synthetic-before.png` 是虚构消息的旧渲染模拟，不是私人生产截图。测试提交`bdd2a28fb63b42ab8af1f683b53a929042b1a345`；对应业务UI来源`1ede70d5a3ae60548303eb8a4b975fba7ac349ed`。这不等于新验证了真实MiniMax模型调用链。
+
+## Context receipts · 2026-10-07
+
+New replies expose a collapsible list of the messages actually supplied to the model, distinguishing user statements from earlier model opinions. This records input scope, not sentence-by-sentence fact verification. Old replies cannot be reconstructed retrospectively; missing records remain unavailable. New prompting constraints have not had a live-model quality comparison. Source50b97188825b3f85a022130ceac38b280ae092df; synthetic browser verification is pending.

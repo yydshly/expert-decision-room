@@ -1,6 +1,7 @@
 import {chromium} from 'playwright';
 import {mkdirSync,writeFileSync} from 'node:fs';
 import assert from 'node:assert/strict';
+import {appendContextReceipt} from '../../lib/discussion-provenance.mts';
 
 // All content is synthetic. Browser traffic is restricted to the local fixture server.
 const origin='http://127.0.0.1:4784';
@@ -41,7 +42,7 @@ try{
    if(current==='broken')return route.fulfill({contentType:'application/x-ndjson',body:events([{type:'start',roles:3}])});
    await new Promise(resolve=>setTimeout(resolve,200));
    const body=`这是第${calls}轮模拟回复。\n\n**我的建议**\n- 阈值只是待验证建议\n- 先做一次测量`;
-   records.unshift({id:crypto.randomUUID(),kind:'expert',title:'模拟回复',role:'需求与资讯研究员',body,source:`实际模型运行：MOCK；关联消息：${d.triggerId}`,created_at:new Date().toISOString()});
+   records.unshift({id:crypto.randomUUID(),kind:'expert',title:'模拟回复',role:'需求与资讯研究员',body,source:appendContextReceipt(`实际模型运行：MOCK；关联消息：${d.triggerId}`,records.slice(0,3).reverse()),created_at:new Date().toISOString()});
    return route.fulfill({contentType:'application/x-ndjson',body:events([{type:'start',roles:3},{type:'dispatch',role:'需求与资讯研究员'},{type:'result',role:'需求与资讯研究员'},{type:'complete',completed:1}])});
   }
   // Other backend APIs are not needed for this test. Never let an unexpected route call a provider.
@@ -57,6 +58,10 @@ try{
  await page.getByRole('link',{name:'你：虚构的纸飞机问题',exact:true}).click();
  assert.ok(page.url().includes('#message-'+fixtureId));
  check('Known references resolve; missing references remain explicit; markdown renders; debug details collapsed');
+ await page.locator('.contextReceipt summary').first().click();
+ await page.getByText('这条回复没有可读取的上下文清单，无法补推它当时看过哪些消息。',{exact:true}).waitFor();
+ check('Legacy reply does not invent a context receipt');
+ await page.locator('.contextReceipt summary').first().click();
  await page.screenshot({path:'test-results/readable-citations-after.png',fullPage:true});
  await page.evaluate(raw=>{const e=document.querySelector('.readableMessage');if(e)e.textContent='模拟旧版渲染（虚构消息，用于复现问题）\n'+raw;},fixtureText);
  await page.screenshot({path:'test-results/citation-bug-synthetic-before.png',fullPage:true});
@@ -69,6 +74,22 @@ try{
  await page.getByText('这是第1轮模拟回复。',{exact:true}).waitFor();
  assert.equal(calls,1);assert.ok(await page.locator('.readableMessage ul li').count()>=2);
  await page.getByText('本轮完成 · 继续发送消息即可接着聊',{exact:true}).waitFor();check('User send executes once and renders natural paragraphs/list');
+ const receipt=page.locator('.message').filter({hasText:'这是第1轮模拟回复。'}).locator('.contextReceipt');
+ await receipt.locator('summary').click();
+ await receipt.getByText('你提供的信息',{exact:true}).first().waitFor();
+ await receipt.getByText('AI 的此前观点',{exact:true}).waitFor();
+ assert.equal(await receipt.locator('a').count(),3);
+ await receipt.getByRole('link',{name:'需求与资讯研究员的发言',exact:true}).click();
+ assert.ok(page.url().includes('#message-'+expertId));
+ assert.ok(!(await receipt.innerText()).includes(fixtureId));
+ check('Context receipt links actual inputs and distinguishes user reports from prior AI opinions without exposing IDs');
+ await receipt.scrollIntoViewIfNeeded();
+ await page.screenshot({path:'test-results/context-receipt-desktop.png',fullPage:true});
+ await page.setViewportSize({width:390,height:844});await receipt.scrollIntoViewIfNeeded();
+ assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);
+ await page.screenshot({path:'test-results/context-receipt-mobile.png',fullPage:true});
+ check('Expanded context receipt remains readable on mobile');
+ await receipt.locator('summary').click();await page.setViewportSize({width:1280,height:900});
  mode='hold';await send('虚构测试：这一轮用于停止。');
  await page.getByRole('button',{name:'停止本轮',exact:true}).waitFor();
  await Promise.all([page.waitForResponse(r=>r.url().includes('action=stop')),page.getByRole('button',{name:'停止本轮',exact:true}).click()]);
@@ -86,9 +107,11 @@ try{
  mode='success';await send('虚构测试：恢复后再讨论。');await page.getByText('这是第7轮模拟回复。',{exact:true}).waitFor();check('A new user request can recover after an error');
  await page.waitForFunction(()=>{const el=document.querySelector('.stream');return el.scrollHeight-el.scrollTop-el.clientHeight<3;});check('Latest reply stays in view while following the conversation');
  await page.locator('.stream').evaluate(el=>{el.scrollTop=0;el.dispatchEvent(new Event('scroll'));});await page.getByRole('button',{name:'回到最新消息',exact:true}).waitFor();
- const priorScroll=await page.locator('.stream').evaluate(el=>el.scrollTop);records.unshift({id:crypto.randomUUID(),kind:'expert',title:'模拟后续消息',role:'商业质疑者',body:'虚构后续消息：用户向上阅读时，不应强制滚动。',source:'实际模型运行：MOCK',created_at:new Date().toISOString()});
+ const priorScroll=await page.locator('.stream').evaluate(el=>el.scrollTop);records.unshift({id:crypto.randomUUID(),kind:'expert',title:'模拟后续消息',role:'商业质疑者',body:'虚构后续消息：用户向上阅读时，不应强制滚动。',source:appendContextReceipt('实际模型运行：MOCK',[{id:missingId,role:'研究员',body:'虚构缺失上下文'}]),created_at:new Date().toISOString()});
  await Promise.all([page.waitForResponse(r=>r.url().endsWith('/api/workspace')),page.getByRole('button',{name:'刷新群聊',exact:true}).click()]);await page.getByText('虚构后续消息：用户向上阅读时，不应强制滚动。',{exact:true}).waitFor();assert.ok(Math.abs(await page.locator('.stream').evaluate(el=>el.scrollTop)-priorScroll)<3);check('Reading earlier messages is not interrupted by an incoming message');
  await page.getByRole('button',{name:'回到最新消息',exact:true}).click();await page.waitForFunction(()=>{const el=document.querySelector('.stream');return el.scrollHeight-el.scrollTop-el.clientHeight<3;});check('Return-to-latest restores following');
+ const missingReceipt=page.locator('.message').filter({hasText:'虚构后续消息：用户向上阅读时，不应强制滚动。'}).locator('.contextReceipt');
+ await missingReceipt.locator('summary').click();await missingReceipt.getByText('原消息不在当前加载的记录中',{exact:true}).waitFor();assert.equal(await missingReceipt.locator('a').count(),0);check('Missing context record is unavailable, never fabricated');await missingReceipt.locator('summary').click();
  await page.screenshot({path:'test-results/chat-desktop.png',fullPage:true});
  await page.setViewportSize({width:390,height:844});await page.waitForFunction(()=>{const el=document.querySelector('.stream');return el.scrollHeight-el.scrollTop-el.clientHeight<3;});check('Viewport resize preserves the latest message position');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);check('390px mobile layout has no document horizontal overflow');
