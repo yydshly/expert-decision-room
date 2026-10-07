@@ -39,6 +39,7 @@ try{
    }
    if(current==='error')return route.fulfill({contentType:'application/x-ndjson',body:events([{type:'start',roles:3},{type:'stopped',completed:0,error:'MINIMAX_HTTP_429'}])});
    if(current==='broken')return route.fulfill({contentType:'application/x-ndjson',body:events([{type:'start',roles:3}])});
+   await new Promise(resolve=>setTimeout(resolve,200));
    const body=`这是第${calls}轮模拟回复。\n\n**我的建议**\n- 阈值只是待验证建议\n- 先做一次测量`;
    records.unshift({id:crypto.randomUUID(),kind:'expert',title:'模拟回复',role:'需求与资讯研究员',body,source:`实际模型运行：MOCK；关联消息：${d.triggerId}`,created_at:new Date().toISOString()});
    return route.fulfill({contentType:'application/x-ndjson',body:events([{type:'start',roles:3},{type:'dispatch',role:'需求与资讯研究员'},{type:'result',role:'需求与资讯研究员'},{type:'complete',completed:1}])});
@@ -83,8 +84,13 @@ try{
  await page.getByText('虚构测试：模拟限流故障。',{exact:true}).waitFor();check('Provider error stays visible and saved question remains');
  mode='broken';await send('虚构测试：模拟断流。');await page.getByRole('alert').filter({hasText:'连接中断'}).waitFor();check('Incomplete stream is reported instead of silently marked complete');
  mode='success';await send('虚构测试：恢复后再讨论。');await page.getByText('这是第7轮模拟回复。',{exact:true}).waitFor();check('A new user request can recover after an error');
+ await page.waitForFunction(()=>{const el=document.querySelector('.stream');return el.scrollHeight-el.scrollTop-el.clientHeight<3;});check('Latest reply stays in view while following the conversation');
+ await page.locator('.stream').evaluate(el=>{el.scrollTop=0;el.dispatchEvent(new Event('scroll'));});await page.getByRole('button',{name:'回到最新消息',exact:true}).waitFor();
+ const priorScroll=await page.locator('.stream').evaluate(el=>el.scrollTop);records.unshift({id:crypto.randomUUID(),kind:'expert',title:'模拟后续消息',role:'商业质疑者',body:'虚构后续消息：用户向上阅读时，不应强制滚动。',source:'实际模型运行：MOCK',created_at:new Date().toISOString()});
+ await Promise.all([page.waitForResponse(r=>r.url().endsWith('/api/workspace')),page.getByRole('button',{name:'刷新群聊',exact:true}).click()]);await page.getByText('虚构后续消息：用户向上阅读时，不应强制滚动。',{exact:true}).waitFor();assert.ok(Math.abs(await page.locator('.stream').evaluate(el=>el.scrollTop)-priorScroll)<3);check('Reading earlier messages is not interrupted by an incoming message');
+ await page.getByRole('button',{name:'回到最新消息',exact:true}).click();await page.waitForFunction(()=>{const el=document.querySelector('.stream');return el.scrollHeight-el.scrollTop-el.clientHeight<3;});check('Return-to-latest restores following');
  await page.screenshot({path:'test-results/chat-desktop.png',fullPage:true});
- await page.setViewportSize({width:390,height:844});
+ await page.setViewportSize({width:390,height:844});await page.waitForFunction(()=>{const el=document.querySelector('.stream');return el.scrollHeight-el.scrollTop-el.clientHeight<3;});check('Viewport resize preserves the latest message position');
  assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),false);check('390px mobile layout has no document horizontal overflow');
  await page.screenshot({path:'test-results/chat-mobile.png',fullPage:true});
  assert.deepEqual(errors,[]);assert.deepEqual(external,[]);check('No browser runtime errors and no external requests');
